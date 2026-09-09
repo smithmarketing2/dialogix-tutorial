@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dialogix — AI Voice Agent Platform | Complete Tutorial</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #06b6d4;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+        }
+        
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Navigation */
+        nav {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+        }
+        
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--light);
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 140px 0 80px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--darker) 0%, var(--dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+        
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-decoration: none;
+            padding: 16px 40px;
+            border-radius: 12px;
+            font-size: 1.125rem;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 4px 24px rgba(99, 102, 241, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.4);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* What is Dialogix */
+        .what-is {
+            background: var(--dark);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 32px;
+            border-radius: 16px;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateY(-4px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: var(--light);
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+            font-size: 0.9375rem;
+        }
+        
+        /* Tutorial Steps */
+        .tutorial {
+            background: var(--darker);
+        }
+        
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        .step {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: var(--light);
+        }
+        
+        .step-content p {
+            color: var(--gray);
+            margin-bottom: 16px;
+        }
+        
+        .code-block {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            color: var(--secondary);
+            overflow-x: auto;
+        }
+        
+        .code-block .comment {
+            color: var(--gray);
+        }
+        
+        .code-block .keyword {
+            color: var(--primary);
+        }
+        
+        /* Use Cases */
+        .use-cases {
+            background: var(--dark);
+        }
+        
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        
+        .case-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 32px;
+            border-radius: 16px;
+        }
+        
+        .case-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .case-card p {
+            color: var(--gray);
+            font-size: 0.9375rem;
+        }
+        
+        .case-card .benefit {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+            color: var(--success);
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        
+        /* Stats */
+        .stats {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 60px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+        
+        .stat h3 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        
+        .stat p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 100px 0;
+            background: var(--darker);
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+        
+        .cta-section p {
+            color: var(--gray);
+            font-size: 1.125rem;
+            margin-bottom: 40px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        
+        footer p {
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .step { grid-template-columns: 1fr; }
+            .step-number { width: 60px; height: 60px; font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">Dialogix</div>
+            <ul class="nav-links">
+                <li><a href="#what-is">What is Dialogix</a></li>
+                <li><a href="#tutorial">Tutorial</a></li>
+                <li><a href="#use-cases">Use Cases</a></li>
+                <li><a href="#get-started">Get Started</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Never Miss a Call. <span>Never Lose a Lead.</span></h1>
+            <p>Dialogix is an AI voice agent platform that answers your business calls, qualifies leads, books appointments, and handles customer inquiries — 24/7, without human intervention.</p>
+            <a href="#get-started" class="cta-button">Get Started Free</a>
+        </div>
+    </section>
+
+    <section class="what-is" id="what-is">
+        <div class="container">
+            <div class="section-header">
+                <h2>What is Dialogix?</h2>
+                <p>Your AI-powered receptionist that handles phone calls with human-like conversation</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎙️</div>
+                    <h3>Answer Inbound Calls</h3>
+                    <p>Every call gets answered instantly. No more voicemail, no more missed opportunities. Your AI agent picks up within seconds.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Qualify Leads</h3>
+                    <p>Ask qualifying questions, score prospects, and only transfer hot leads to your sales team. Filter out tire-kickers automatically.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h3>Book Appointments</h3>
+                    <p>Integrate with your calendar and let Dialogix schedule, reschedule, and confirm appointments while you focus on your business.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>Answer FAQs</h3>
+                    <p>Train your agent with your business knowledge. It answers common questions about pricing, hours, services, and more.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>CRM Integration</h3>
+                    <p>Connects with your existing tools — Zapier, Make, HubSpot, Salesforce. Push lead data wherever you need it.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Call Analytics</h3>
+                    <p>Track call volume, conversion rates, popular questions, and agent performance. Data-driven insights to optimize your voice strategy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat">
+                    <h3>24/7</h3>
+                    <p>Always Available</p>
+                </div>
+                <div class="stat">
+                    <h3>&lt;3s</h3>
+                    <p>Answer Time</p>
+                </div>
+                <div class="stat">
+                    <h3>40%</h3>
+                    <p>More Bookings</p>
+                </div>
+                <div class="stat">
+                    <h3>60%</h3>
+                    <p>Cost Reduction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tutorial" id="tutorial">
+        <div class="container">
+            <div class="section-header">
+                <h2>Getting Started in 5 Steps</h2>
+                <p>From signup to your first AI call in under 10 minutes</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Create Your Account</h3>
+                        <p>Sign up at dialogix.ai with your business email. No credit card required for the trial.</p>
+                        <div class="code-block">
+<span class="comment"># Visit the signup page</span>
+https://dialogix.ai/signup
+
+<span class="comment"># Or contact our team for a demo</span>
+<span class="keyword">contact</span> team@dialogix.ai
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Configure Your Agent</h3>
+                        <p>Set up your AI voice agent with your business details, greeting script, and conversation flow.</p>
+                        <div class="code-block">
+<span class="comment"># Agent Configuration</span>
+<span class="keyword">Business Name:</span> Smith Roofing
+<span class="keyword">Greeting:</span> "Thanks for calling Smith Roofing..."
+<span class="keyword">Hours:</span> Mon-Fri 8AM-6PM
+<span class="keyword">Services:</span> Roof repair, replacement, inspection
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Connect Your Phone Number</h3>
+                        <p>Port your existing number or get a new one. Dialogix provides local and toll-free numbers.</p>
+                        <div class="code-block">
+<span class="comment"># Phone Number Setup</span>
+<span class="keyword">Option 1:</span> Port existing number
+<span class="keyword">Option 2:</span> Get new local number
+<span class="keyword">Option 3:</span> Use toll-free number
+
+<span class="comment"># Forward calls to Dialogix</span>
+Set call forwarding: YOUR_NUMBER → DIALOGIX_NUMBER
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Build Conversation Flows</h3>
+                        <p>Design how your agent handles different call types using our visual flow builder.</p>
+                        <div class="code-block">
+<span class="comment"># Sample Conversation Flow</span>
+<span class="keyword">IF</span> caller wants quote →
+  Ask: property type, issue description
+  Collect: name, phone, email
+  Action: send lead to CRM
+  
+<span class="keyword">IF</span> caller wants to schedule →
+  Check calendar availability
+  Book appointment
+  Send confirmation SMS
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Go Live & Monitor</h3>
+                        <p>Activate your agent and watch the dashboard for real-time call data and insights.</p>
+                        <div class="code-block">
+<span class="comment"># Dashboard Metrics</span>
+<span class="keyword">Total Calls:</span> 147
+<span class="keyword">Answered:</span> 147 (100%)
+<span class="keyword">Leads Generated:</span> 38
+<span class="keyword">Appointments:</span> 12
+<span class="keyword">Avg Duration:</span> 3:24
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="use-cases" id="use-cases">
+        <div class="container">
+            <div class="section-header">
+                <h2>Who Uses Dialogix?</h2>
+                <p>Real businesses getting real results with AI voice agents</p>
+            </div>
+            <div class="cases-grid">
+                <div class="case-card">
+                    <h3>🏠 Home Services</h3>
+                    <p>Roofers, plumbers, HVAC companies use Dialogix to capture emergency calls and schedule estimates after hours.</p>
+                    <div class="benefit">✓ 3x more after-hours bookings</div>
+                </div>
+                <div class="case-card">
+                    <h3>⚖️ Law Firms</h3>
+                    <p>Personal injury and family law practices qualify potential clients and schedule consultations automatically.</p>
+                    <div class="benefit">✓ 40% more qualified intakes</div>
+                </div>
+                <div class="case-card">
+                    <h3>🏥 Medical Practices</h3>
+                    <p>Dentists, chiropractors, and clinics handle appointment scheduling and prescription refill requests.</p>
+                    <div class="benefit">✓ 50% reduction in front-desk calls</div>
+                </div>
+                <div class="case-card">
+                    <h3>🏢 Real Estate</h3>
+                    <p>Agents and brokerages capture buyer inquiries, schedule showings, and pre-qualify prospects 24/7.</p>
+                    <div class="benefit">✓ Never miss a hot lead again</div>
+                </div>
+                <div class="case-card">
+                    <h3>🛒 E-commerce</h3>
+                    <p>High-ticket product businesses provide phone support and close sales without hiring a call center.</p>
+                    <div class="benefit">✓ 25% higher conversion rate</div>
+                </div>
+                <div class="case-card">
+                    <h3>📞 Call Centers</h3>
+                    <p>Replace tier-1 support with AI agents that handle routine inquiries and escalate complex issues.</p>
+                    <div class="benefit">✓ 60% cost reduction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="get-started">
+        <div class="container">
+            <h2>Ready to Never Miss a Call Again?</h2>
+            <p>Join hundreds of businesses using Dialogix to capture leads, book appointments, and serve customers around the clock.</p>
+            <a href="#" class="cta-button">Start Your Free Trial</a>
+            <p style="margin-top: 24px; color: var(--gray); font-size: 0.875rem;">No credit card required • 14-day free trial • Setup in 10 minutes</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Dialogix. All rights reserved. | Built for businesses that never sleep.</p>
+        </div>
+    </footer>
+</body>
+</html>
