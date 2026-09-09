@@ -8,35 +8,35 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #06b6d4;
-            --dark: #0f172a;
-            --darker: #020617;
-            --light: #f8fafc;
-            --gray: #64748b;
+            --primary: #ff4a17;
+            --primary-dark: #c9340a;
+            --secondary: #093a58;
+            --dark: #051721;
+            --darker: #000000;
+            --light: #ffffff;
+            --gray: #9b9b9b;
+            --gray-light: #f5f5f5;
             --success: #10b981;
-            --warning: #f59e0b;
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             background: var(--darker);
             color: var(--light);
             line-height: 1.6;
         }
         
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
         
         /* Navigation */
         nav {
-            background: rgba(15, 23, 42, 0.95);
+            background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(10px);
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 100;
-            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+            border-bottom: 1px solid rgba(255, 74, 23, 0.2);
         }
         
         nav .container {
@@ -47,11 +47,10 @@
         }
         
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--primary);
+            letter-spacing: -0.5px;
         }
         
         .nav-links {
@@ -65,15 +64,16 @@
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
+            font-size: 0.9375rem;
         }
         
         .nav-links a:hover {
-            color: var(--light);
+            color: var(--primary);
         }
         
         /* Hero */
         .hero {
-            padding: 140px 0 80px;
+            padding: 140px 0 100px;
             text-align: center;
             background: linear-gradient(180deg, var(--darker) 0%, var(--dark) 100%);
             position: relative;
@@ -83,17 +83,13 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
-            animation: pulse 4s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.8; }
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 74, 23, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(9, 58, 88, 0.15) 0%, transparent 50%);
         }
         
         .hero .container {
@@ -106,12 +102,11 @@
             font-weight: 800;
             margin-bottom: 24px;
             line-height: 1.1;
+            color: var(--light);
         }
         
         .hero h1 span {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--primary);
         }
         
         .hero p {
@@ -123,25 +118,38 @@
         
         .cta-button {
             display: inline-block;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background: var(--primary);
             color: white;
             text-decoration: none;
-            padding: 16px 40px;
-            border-radius: 12px;
+            padding: 18px 48px;
+            border-radius: 8px;
             font-size: 1.125rem;
             font-weight: 700;
             transition: all 0.3s;
-            box-shadow: 0 4px 24px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 24px rgba(255, 74, 23, 0.3);
+            border: none;
+            cursor: pointer;
         }
         
         .cta-button:hover {
+            background: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 8px 32px rgba(255, 74, 23, 0.4);
+        }
+        
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            margin-left: 16px;
+        }
+        
+        .cta-button.secondary:hover {
+            background: rgba(255, 74, 23, 0.1);
         }
         
         /* Section Styles */
         section {
-            padding: 80px 0;
+            padding: 100px 0;
         }
         
         .section-header {
@@ -153,6 +161,7 @@
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 16px;
+            color: var(--light);
         }
         
         .section-header p {
@@ -169,26 +178,27 @@
         
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 24px;
         }
         
         .feature-card {
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            padding: 32px;
-            border-radius: 16px;
+            border: 1px solid rgba(255, 74, 23, 0.1);
+            padding: 40px;
+            border-radius: 12px;
             transition: all 0.3s;
         }
         
         .feature-card:hover {
-            border-color: rgba(99, 102, 241, 0.3);
+            border-color: rgba(255, 74, 23, 0.3);
             transform: translateY(-4px);
+            background: rgba(255, 74, 23, 0.03);
         }
         
         .feature-icon {
             font-size: 2.5rem;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
         
         .feature-card h3 {
@@ -200,6 +210,32 @@
         .feature-card p {
             color: var(--gray);
             font-size: 0.9375rem;
+            line-height: 1.7;
+        }
+        
+        /* Stats */
+        .stats {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--dark) 100%);
+            padding: 80px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+        
+        .stat h3 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+        
+        .stat p {
+            font-size: 1rem;
+            color: var(--gray);
         }
         
         /* Tutorial Steps */
@@ -210,7 +246,7 @@
         .steps {
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 50px;
         }
         
         .step {
@@ -223,8 +259,8 @@
         .step-number {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border-radius: 20px;
+            background: var(--primary);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -242,14 +278,15 @@
         
         .step-content p {
             color: var(--gray);
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            font-size: 1rem;
         }
         
         .code-block {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(99, 102, 241, 0.2);
+            background: rgba(5, 23, 33, 0.8);
+            border: 1px solid rgba(255, 74, 23, 0.2);
             border-radius: 12px;
-            padding: 20px;
+            padding: 24px;
             font-family: 'Courier New', monospace;
             font-size: 0.875rem;
             color: var(--secondary);
@@ -276,10 +313,16 @@
         }
         
         .case-card {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            padding: 32px;
-            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 74, 23, 0.15);
+            padding: 40px;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+        
+        .case-card:hover {
+            border-color: rgba(255, 74, 23, 0.3);
+            background: rgba(255, 74, 23, 0.03);
         }
         
         .case-card h3 {
@@ -288,56 +331,130 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            color: var(--light);
         }
         
         .case-card p {
             color: var(--gray);
             font-size: 0.9375rem;
+            line-height: 1.7;
         }
         
         .case-card .benefit {
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid rgba(99, 102, 241, 0.2);
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 74, 23, 0.2);
             color: var(--success);
             font-weight: 600;
             font-size: 0.875rem;
         }
         
-        /* Stats */
-        .stats {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            padding: 60px 0;
+        /* Video Tutorials Section */
+        .videos {
+            background: var(--darker);
         }
         
-        .stats-grid {
+        .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            text-align: center;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
         }
         
-        .stat h3 {
+        .video-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 74, 23, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .video-card:hover {
+            border-color: rgba(255, 74, 23, 0.3);
+            transform: translateY(-4px);
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 8px;
+            position: relative;
         }
         
-        .stat p {
-            font-size: 1rem;
-            opacity: 0.9;
+        .video-thumbnail::after {
+            content: '▶';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 74, 23, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .video-info {
+            padding: 24px;
+        }
+        
+        .video-info h3 {
+            font-size: 1.125rem;
+            margin-bottom: 8px;
+            color: var(--light);
+        }
+        
+        .video-info p {
+            color: var(--gray);
+            font-size: 0.875rem;
+            margin-bottom: 12px;
+        }
+        
+        .video-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 0.8125rem;
+            color: var(--gray);
+        }
+        
+        .video-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
         
         /* CTA Section */
         .cta-section {
             text-align: center;
-            padding: 100px 0;
-            background: var(--darker);
+            padding: 120px 0;
+            background: linear-gradient(180deg, var(--darker) 0%, var(--dark) 100%);
+            position: relative;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 74, 23, 0.05) 0%, transparent 70%);
+        }
+        
+        .cta-section .container {
+            position: relative;
+            z-index: 1;
         }
         
         .cta-section h2 {
             font-size: 2.5rem;
             margin-bottom: 16px;
+            color: var(--light);
         }
         
         .cta-section p {
@@ -351,7 +468,7 @@
             background: var(--dark);
             padding: 40px 0;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            border-top: 1px solid rgba(255, 74, 23, 0.1);
         }
         
         footer p {
@@ -365,6 +482,7 @@
             .nav-links { display: none; }
             .step { grid-template-columns: 1fr; }
             .step-number { width: 60px; height: 60px; font-size: 1.5rem; }
+            .cta-button.secondary { margin-left: 0; margin-top: 16px; }
         }
     </style>
 </head>
@@ -375,6 +493,7 @@
             <ul class="nav-links">
                 <li><a href="#what-is">What is Dialogix</a></li>
                 <li><a href="#tutorial">Tutorial</a></li>
+                <li><a href="#videos">Videos</a></li>
                 <li><a href="#use-cases">Use Cases</a></li>
                 <li><a href="#get-started">Get Started</a></li>
             </ul>
@@ -383,48 +502,51 @@
 
     <section class="hero">
         <div class="container">
-            <h1>Never Miss a Call. <span>Never Lose a Lead.</span></h1>
-            <p>Dialogix is an AI voice agent platform that answers your business calls, qualifies leads, books appointments, and handles customer inquiries — 24/7, without human intervention.</p>
-            <a href="#get-started" class="cta-button">Get Started Free</a>
+            <h1>Every Missed Call Is <span>Money Lost</span></h1>
+            <p>AI Voice Agents that answer, qualify, and book appointments for your business 24/7 — without hiring staff.</p>
+            <div>
+                <a href="#get-started" class="cta-button">Get Started Free</a>
+                <a href="#videos" class="cta-button secondary">Watch Tutorials</a>
+            </div>
         </div>
     </section>
 
     <section class="what-is" id="what-is">
         <div class="container">
             <div class="section-header">
-                <h2>What is Dialogix?</h2>
-                <p>Your AI-powered receptionist that handles phone calls with human-like conversation</p>
+                <h2>Everything You Need</h2>
+                <p>Answer Every Call. Book More Appointments. Close Better Leads.</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">🎙️</div>
-                    <h3>Answer Inbound Calls</h3>
-                    <p>Every call gets answered instantly. No more voicemail, no more missed opportunities. Your AI agent picks up within seconds.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Qualify Leads</h3>
-                    <p>Ask qualifying questions, score prospects, and only transfer hot leads to your sales team. Filter out tire-kickers automatically.</p>
+                    <div class="feature-icon">📞</div>
+                    <h3>24/7 Instant Call Answering</h3>
+                    <p>The AI answers every call immediately—no rings, no missed opportunities.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📅</div>
-                    <h3>Book Appointments</h3>
-                    <p>Integrate with your calendar and let Dialogix schedule, reschedule, and confirm appointments while you focus on your business.</p>
+                    <h3>Automated Appointment Booking</h3>
+                    <p>The AI books appointments directly into your calendar during the call.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">💬</div>
-                    <h3>Answer FAQs</h3>
-                    <p>Train your agent with your business knowledge. It answers common questions about pricing, hours, services, and more.</p>
+                    <div class="feature-icon">🎯</div>
+                    <h3>Lead Qualification</h3>
+                    <p>The AI asks questions, filters leads, and gathers key details before handing off.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🔗</div>
-                    <h3>CRM Integration</h3>
-                    <p>Connects with your existing tools — Zapier, Make, HubSpot, Salesforce. Push lead data wherever you need it.</p>
+                    <div class="feature-icon">🤖</div>
+                    <h3>No Coding Required</h3>
+                    <p>Design advanced, multi-step AI workflows and prompts that requires no coding experience.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📊</div>
-                    <h3>Call Analytics</h3>
-                    <p>Track call volume, conversion rates, popular questions, and agent performance. Data-driven insights to optimize your voice strategy.</p>
+                    <h3>Powerful Analytics</h3>
+                    <p>Monitor performance with real-time analytics, transcripts, and call recordings.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Multi-Channel Deployment</h3>
+                    <p>Deploy across voice calls, SMS, and WhatsApp—automate conversations everywhere.</p>
                 </div>
             </div>
         </div>
@@ -546,11 +668,88 @@ Set call forwarding: YOUR_NUMBER → DIALOGIX_NUMBER
         </div>
     </section>
 
+    <section class="videos" id="videos">
+        <div class="container">
+            <div class="section-header">
+                <h2>Video Tutorials</h2>
+                <p>Learn Dialogix step-by-step with our comprehensive video guides</p>
+            </div>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">🎬</div>
+                    <div class="video-info">
+                        <h3>Getting Started with Dialogix</h3>
+                        <p>Complete walkthrough of setting up your first AI voice agent</p>
+                        <div class="video-meta">
+                            <span>⏱️ 12 min</span>
+                            <span>👁️ 2.4k views</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumbnail">⚙️</div>
+                    <div class="video-info">
+                        <h3>Building Conversation Flows</h3>
+                        <p>How to design advanced multi-step conversation workflows</p>
+                        <div class="video-meta">
+                            <span>⏱️ 18 min</span>
+                            <span>👁️ 1.8k views</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumbnail">📅</div>
+                    <div class="video-info">
+                        <h3>Calendar Integration Setup</h3>
+                        <p>Connect Google Calendar, Calendly, and other scheduling tools</p>
+                        <div class="video-meta">
+                            <span>⏱️ 8 min</span>
+                            <span>👁️ 3.1k views</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumbnail">🔗</div>
+                    <div class="video-info">
+                        <h3>CRM & Zapier Integration</h3>
+                        <p>Push lead data to your favorite tools automatically</p>
+                        <div class="video-meta">
+                            <span>⏱️ 15 min</span>
+                            <span>👁️ 1.5k views</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumbnail">📊</div>
+                    <div class="video-info">
+                        <h3>Analytics & Optimization</h3>
+                        <p>Understanding your call data and improving performance</p>
+                        <div class="video-meta">
+                            <span>⏱️ 10 min</span>
+                            <span>👁️ 2.2k views</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumbnail">🚀</div>
+                    <div class="video-info">
+                        <h3>Advanced Campaign Setup</h3>
+                        <p>Create outbound calling campaigns with scheduling and tracking</p>
+                        <div class="video-meta">
+                            <span>⏱️ 22 min</span>
+                            <span>👁️ 980 views</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="use-cases" id="use-cases">
         <div class="container">
             <div class="section-header">
-                <h2>Who Uses Dialogix?</h2>
-                <p>Real businesses getting real results with AI voice agents</p>
+                <h2>Client Cases</h2>
+                <p>We help brands capture more leads, save valuable time, and reduce costs</p>
             </div>
             <div class="cases-grid">
                 <div class="case-card">
@@ -598,7 +797,7 @@ Set call forwarding: YOUR_NUMBER → DIALOGIX_NUMBER
 
     <footer>
         <div class="container">
-            <p>© 2026 Dialogix. All rights reserved. | Built for businesses that never sleep.</p>
+            <p>© 2026 Dialogix. All rights reserved. | Every call is an opportunity.</p>
         </div>
     </footer>
 </body>
