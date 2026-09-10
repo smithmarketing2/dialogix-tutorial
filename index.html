@@ -49,16 +49,19 @@
         .logo {
             display: flex;
             align-items: center;
-            background: transparent;
+            background: var(--dark);
             height: 48px;
+            padding: 4px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 74, 23, 0.2);
         }
         
         .logo img {
             height: 100%;
             width: auto;
             display: block;
-            background: transparent;
             object-fit: contain;
+            filter: brightness(1.1) contrast(1.1);
         }
         
         .nav-links {
