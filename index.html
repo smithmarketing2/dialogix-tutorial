@@ -745,6 +745,11 @@
         function closeVideoModal() {
             document.getElementById('videoModal').style.display = 'none';
             document.body.style.overflow = 'auto';
+            // Stop audio by resetting iframe src
+            var iframe = document.getElementById('pv_siVa41cZ');
+            var src = iframe.src;
+            iframe.src = '';
+            iframe.src = src;
         }
         document.getElementById('videoModal').addEventListener('click', function(e) {
             if (e.target === this) closeVideoModal();
