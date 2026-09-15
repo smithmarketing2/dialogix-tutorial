@@ -654,7 +654,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="video-card">
+                <div class="video-card" onclick="openVideoModal()" style="cursor: pointer;">
                     <div class="video-thumbnail">⚙️</div>
                     <div class="video-info">
                         <h3>Settings Overview</h3>
@@ -662,13 +662,6 @@
                         <div class="video-meta">
                             <span>⏱️ 14 min</span>
                             <span>👁️ 1.2k views</span>
-                        </div>
-                        <div class="video-embed" style="margin-top: 16px;">
-                            <div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
-                                <figure style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%; margin-block-end: 0; margin-block-start: 0; margin-inline-start: 0; margin-inline-end: 0;">
-                                    <iframe id="pv_siVa41cZ" src="https://media.publit.io/file/Dialogix-Campaign-Tutorial.html" scrolling="no" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute; overflow:hidden;" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
-                                </figure>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -731,5 +724,31 @@
             <p>© 2026 Dialogix. All rights reserved. | Every call is an opportunity.</p>
         </div>
     </footer>
+
+    <!-- Video Modal -->
+    <div id="videoModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center;">
+        <div style="position: relative; width: 90%; max-width: 900px;">
+            <span onclick="closeVideoModal()" style="position: absolute; top: -40px; right: 0; color: white; font-size: 32px; cursor: pointer;">&times;</span>
+            <div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
+                <figure style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%; margin-block-end: 0; margin-block-start: 0; margin-inline-start: 0; margin-inline-end: 0;">
+                    <iframe id="pv_siVa41cZ" src="https://media.publit.io/file/Dialogix-Campaign-Tutorial.html" scrolling="no" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute; overflow:hidden;" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+                </figure>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openVideoModal() {
+            document.getElementById('videoModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeVideoModal() {
+            document.getElementById('videoModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) closeVideoModal();
+        });
+    </script>
 </body>
 </html>
