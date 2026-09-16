@@ -665,6 +665,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="video-card" onclick="openVideoModal7()" style="cursor: pointer;">
+                    <div class="video-thumbnail">🔔</div>
+                    <div class="video-info">
+                        <h3>Understanding Webhooks</h3>
+                        <p>Learn how to set up and use webhooks to connect Dialogix with your external systems</p>
+                        <div class="video-meta">
+                            <span>⏱️ 12 min</span>
+                            <span>👁️ 850 views</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="video-card" onclick="openVideoModal4()" style="cursor: pointer;">
                     <div class="video-thumbnail">📚</div>
                     <div class="video-info">
@@ -795,6 +806,18 @@
         </div>
     </div>
 
+    <!-- Video Modal 7 - Understanding Webhooks -->
+    <div id="videoModal7" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center;">
+        <div style="position: relative; width: 90%; max-width: 900px;">
+            <span onclick="closeVideoModal7()" style="position: absolute; top: -40px; right: 0; color: white; font-size: 32px; cursor: pointer;">&times;</span>
+            <div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
+                <figure style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%; margin-block-end: 0; margin-block-start: 0; margin-inline-start: 0; margin-inline-end: 0;">
+                    <iframe id="pv_webhooks" src="about:blank" scrolling="no" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute; overflow:hidden;" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+                </figure>
+            </div>
+        </div>
+    </div>
+
     <!-- Video Modal 6 - Settings Overview -->
     <div id="videoModal6" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center;">
         <div style="position: relative; width: 90%; max-width: 900px;">
@@ -920,6 +943,23 @@
         }
         document.getElementById('videoModal6').addEventListener('click', function(e) {
             if (e.target === this) closeVideoModal6();
+        });
+
+        function openVideoModal7() {
+            document.getElementById('videoModal7').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeVideoModal7() {
+            document.getElementById('videoModal7').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            // Stop audio by resetting iframe src
+            var iframe = document.getElementById('pv_webhooks');
+            var src = iframe.src;
+            iframe.src = '';
+            iframe.src = src;
+        }
+        document.getElementById('videoModal7').addEventListener('click', function(e) {
+            if (e.target === this) closeVideoModal7();
         });
     </script>
 </body>
